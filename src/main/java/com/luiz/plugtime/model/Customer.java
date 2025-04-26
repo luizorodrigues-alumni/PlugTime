@@ -28,4 +28,5 @@ public class Customer {
     private String street;
     private String complement;
     private String phone;
+    private String email;
 }

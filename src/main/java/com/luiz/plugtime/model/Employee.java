@@ -19,4 +19,10 @@ public class Employee {
     private String name;
 
     private String phone;
+
+    @Column(unique = true)
+    private String cpf;
+
+    @Column(unique = true)
+    private String email;
 }

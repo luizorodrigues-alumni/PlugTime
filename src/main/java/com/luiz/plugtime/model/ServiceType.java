@@ -21,5 +21,5 @@ public class ServiceType {
     private double estimated_cost;
 
     @ManyToMany(mappedBy = "serviceTypes")
-    private Set<Service> services;
+    private Set<WorkOrder> workOrders;
 }

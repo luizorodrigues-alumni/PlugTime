@@ -5,14 +5,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "service")
-public class Service {
+@Table(name = "work_order")
+public class WorkOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,16 +26,16 @@ public class Service {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    private double amount;
+    private BigDecimal amount;
 
-    private LocalDateTime scheduled_time;
+    private LocalDateTime scheduledTime;
 
     private ServiceStatus status;
 
     @ManyToMany
     @JoinTable(
-            name = "service_service_type",
-            joinColumns = @JoinColumn(name = "service_id"),
+            name = "work_order_service_type",
+            joinColumns = @JoinColumn(name = "work_order_id"),
             inverseJoinColumns = @JoinColumn(name = "service_type_id")
     )
     private Set<ServiceType> serviceTypes;

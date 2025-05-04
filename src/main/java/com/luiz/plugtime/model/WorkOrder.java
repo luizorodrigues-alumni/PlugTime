@@ -34,9 +34,9 @@ public class WorkOrder {
 
     @ManyToMany
     @JoinTable(
-            name = "work_order_service_type",
+            name = "work_order_work_type",
             joinColumns = @JoinColumn(name = "work_order_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_type_id")
+            inverseJoinColumns = @JoinColumn(name = "work_type_id")
     )
-    private Set<ServiceType> serviceTypes;
+    private Set<WorkType> workTypes;
 }

@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "service_type")
-public class ServiceType {
+@Table(name = "work_type")
+public class WorkType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -18,8 +19,8 @@ public class ServiceType {
     @Column(nullable = false)
     private String type;
 
-    private double estimated_cost;
+    private BigDecimal estimatedCost;
 
-    @ManyToMany(mappedBy = "serviceTypes")
+    @ManyToMany(mappedBy = "workTypes")
     private Set<WorkOrder> workOrders;
 }

@@ -5,20 +5,20 @@ import com.luiz.plugtime.model.Customer;
 import com.luiz.plugtime.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
-    private CustomerService service;
+    private final CustomerService service;
 
     public CustomerController(CustomerService service) {
         this.service = service;
     }
 
+    // Creates a new Customer
     @PostMapping
     public ResponseEntity<CustomerDto> createCustomer(@RequestBody Customer customer){
         Customer savedCustomer = service.createCustomer(customer);
@@ -28,5 +28,17 @@ public class CustomerController {
                 savedCustomer.getEmail()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+    }
+
+    // Retrieves the list containing public information about customers
+    @GetMapping("/public")
+    public ResponseEntity<List<CustomerDto>> getAllCustomersPublicInfo(){
+        return ResponseEntity.status(200).body(service.getAllCustomersPublicInfo());
+    }
+
+    // Retrieves the list containing private information about customers
+    @GetMapping("/admin")
+    public ResponseEntity<List<Customer>> getAllCustomersFull(){
+        return ResponseEntity.status(200).body(service.getAllCustomersFull());
     }
 }

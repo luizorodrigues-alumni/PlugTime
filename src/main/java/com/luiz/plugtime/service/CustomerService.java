@@ -3,11 +3,13 @@ package com.luiz.plugtime.service;
 import com.luiz.plugtime.dto.CustomerDto;
 import com.luiz.plugtime.exceptions.CustomerCreationException;
 import com.luiz.plugtime.exceptions.CustomerException;
+import com.luiz.plugtime.exceptions.CustomerNotFoundException;
 import com.luiz.plugtime.model.Customer;
 import com.luiz.plugtime.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CustomerService {
@@ -39,10 +41,18 @@ public class CustomerService {
     public List<CustomerDto> getAllCustomersPublicInfo(){
         try {
             return repository.findAll().stream()
-                    .map(c -> new CustomerDto(c.getName(), c.getPhone(), c.getEmail()))
+                    .map(c -> new CustomerDto(c.getId(), c.getName(), c.getPhone(), c.getEmail()))
                     .toList();
         } catch (Exception e) {
             throw new CustomerException(e.getMessage());
         }
+    }
+
+    public CustomerDto getCustomerById(UUID uuid){
+        Customer customer = repository
+                .findById(uuid)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not Found for id: " + uuid));
+
+        return new CustomerDto(uuid, customer.getName(), customer.getPhone(), customer.getEmail());
     }
 }

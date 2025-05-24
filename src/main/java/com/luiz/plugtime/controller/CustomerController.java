@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/customers")
@@ -23,6 +24,7 @@ public class CustomerController {
     public ResponseEntity<CustomerDto> createCustomer(@RequestBody Customer customer){
         Customer savedCustomer = service.createCustomer(customer);
         CustomerDto responseDto = new CustomerDto(
+                savedCustomer.getId(),
                 savedCustomer.getName(),
                 savedCustomer.getPhone(),
                 savedCustomer.getEmail()
@@ -40,5 +42,10 @@ public class CustomerController {
     @GetMapping("/admin")
     public ResponseEntity<List<Customer>> getAllCustomersFull(){
         return ResponseEntity.status(200).body(service.getAllCustomersFull());
+    }
+
+    @GetMapping("/public/{uuid}")
+    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable UUID uuid){
+        return ResponseEntity.status(200).body(service.getCustomerById(uuid));
     }
 }

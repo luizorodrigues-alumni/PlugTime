@@ -1,4 +1,6 @@
 package com.luiz.plugtime.dto;
 
-public record CustomerDto(String name, String phone, String email) {
+import java.util.UUID;
+
+public record CustomerDto(UUID id, String name, String phone, String email) {
 }

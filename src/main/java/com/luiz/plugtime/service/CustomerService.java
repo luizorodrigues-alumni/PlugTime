@@ -47,7 +47,7 @@ public class CustomerService {
             throw new CustomerException(e.getMessage());
         }
     }
-
+    // Get customer By id
     public CustomerDto getCustomerById(UUID uuid){
         Customer customer = repository
                 .findById(uuid)

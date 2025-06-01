@@ -1,6 +1,6 @@
 package com.luiz.plugtime.controller;
 
-import com.luiz.plugtime.dto.CustomerDto;
+import com.luiz.plugtime.dto.customer.CustomerDto;
 import com.luiz.plugtime.model.Customer;
 import com.luiz.plugtime.service.CustomerService;
 import org.springframework.http.HttpStatus;

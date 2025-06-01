@@ -1,4 +1,4 @@
-package com.luiz.plugtime.dto;
+package com.luiz.plugtime.dto.customer;
 
 import java.util.UUID;
 

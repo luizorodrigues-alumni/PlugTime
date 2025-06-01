@@ -1,9 +1,9 @@
 package com.luiz.plugtime.service;
 
-import com.luiz.plugtime.dto.CustomerDto;
-import com.luiz.plugtime.exceptions.CustomerCreationException;
-import com.luiz.plugtime.exceptions.CustomerException;
-import com.luiz.plugtime.exceptions.CustomerNotFoundException;
+import com.luiz.plugtime.dto.customer.CustomerDto;
+import com.luiz.plugtime.exceptions.customer.CustomerCreationException;
+import com.luiz.plugtime.exceptions.customer.CustomerException;
+import com.luiz.plugtime.exceptions.customer.CustomerNotFoundException;
 import com.luiz.plugtime.model.Customer;
 import com.luiz.plugtime.repository.CustomerRepository;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.luiz.plugtime.exceptions;
+package com.luiz.plugtime.exceptions.customer;
 
 public class CustomerCreationException extends CustomerException {
     public CustomerCreationException(String message) {

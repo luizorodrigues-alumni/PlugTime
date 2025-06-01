@@ -1,6 +1,10 @@
 package com.luiz.plugtime.exceptions;
 
 import com.luiz.plugtime.dto.ErrorDto;
+import com.luiz.plugtime.exceptions.customer.CustomerCreationException;
+import com.luiz.plugtime.exceptions.customer.CustomerException;
+import com.luiz.plugtime.exceptions.customer.CustomerNotFoundException;
+import com.luiz.plugtime.exceptions.employee.EmployeeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -41,6 +45,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDto> handleCustomerNotFoundException(CustomerNotFoundException e){
         return ResponseEntity
                 .status(404)
+                .body(new ErrorDto(e.getMessage()));
+    }
+
+    // Employee Exception
+    @ExceptionHandler(EmployeeException.class)
+    public ResponseEntity<ErrorDto> handleEmployeeException(EmployeeException e){
+        return ResponseEntity.
+                status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorDto(e.getMessage()));
     }
 

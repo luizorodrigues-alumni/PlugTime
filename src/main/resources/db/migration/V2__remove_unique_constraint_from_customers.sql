@@ -1,0 +1,1 @@
+ALTER TABLE customers DROP CONSTRAINT IF EXISTS customers_cep_key;

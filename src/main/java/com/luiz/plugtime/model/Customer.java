@@ -21,11 +21,10 @@ public class Customer {
     @Column(unique = true)
     private String cpf;
 
-    @Column(unique = true)
     private String cep;
-
     private String neighborhood;
     private String street;
+    private Integer number;
     private String complement;
     private String phone;
     private String email;
